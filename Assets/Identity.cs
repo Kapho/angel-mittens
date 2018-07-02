@@ -1,0 +1,12 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Identity : MonoBehaviour {
+	public int health = 5;
+	public int healthMax = 5;
+
+	public void takeDamage(int damage, GameObject attacker) {
+		
+	}
+}
