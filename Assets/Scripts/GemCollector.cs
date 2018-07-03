@@ -9,6 +9,10 @@ public class GemCollector : MonoBehaviour {
 		if(col.GetComponent<Gem>()) {
 			gems++;
 			Destroy(col.gameObject);
+
+			if(gems == 32 || gems == 128 || gems == 512) {
+				GetComponentInParent<PlayerWeapon>().levelUp();
+			}
 		}
 	}
 }
