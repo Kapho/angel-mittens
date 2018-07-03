@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Identity : MonoBehaviour {
+	public GameObject gem;
 	public int health = 5;
 	public int healthMax = 5;
+	public bool dropGem = false;
 	private SpriteRenderer sprite;
 	private Color initialColor;
 
@@ -25,6 +27,9 @@ public class Identity : MonoBehaviour {
 				gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>().enabled = false;
 				Invoke("gotoGameover", 0.2f);
 			} else {
+				if(dropGem) {
+					Instantiate(gem, transform.position, transform.rotation);
+				}
 				Destroy(gameObject);
 			}
 		}

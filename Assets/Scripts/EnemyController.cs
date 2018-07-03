@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 	public GameObject gem;
 	public enum BrainType {
+		SPAWNER,
 		SWARM,
 	}
 
 	public BrainType brain;
-	public bool dropGem = false;
 
 	protected void Start() {
 
@@ -19,15 +19,13 @@ public class EnemyController : MonoBehaviour {
 		var player = GameObject.FindGameObjectWithTag("Player");
 
 		switch(brain) {
+			case BrainType.SPAWNER:
+			break;
 			case BrainType.SWARM:
 			break;
 			default:
 			Debug.Log("unimplemented brain on " + gameObject.name);
 			break;
-		}
-
-		if(GetComponent<Identity>().health == 0 && dropGem) {
-			Instantiate(gem, transform.position, transform.rotation);
 		}
 	}
 }
