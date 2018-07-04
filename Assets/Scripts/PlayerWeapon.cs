@@ -15,6 +15,7 @@ public class PlayerWeapon : MonoBehaviour {
 	private bool lerpingUp = true;
 	private Vector3 initialPosition;
 	private Color handColor = new Color(63, 0, 0, 255);
+	private float heldFor;
 
 	protected void Start() {
 		muzzlePoint = transform.Find("muzzlePoint");
@@ -24,7 +25,17 @@ public class PlayerWeapon : MonoBehaviour {
 
 	protected void Update() {
 		if(Input.GetMouseButton(0)) {
+			heldFor += Time.deltaTime;
+		}
+
+		if(heldFor > 0 && heldFor <= 0.125f && !Input.GetMouseButton(0)) {
+			fireShotgun();
+		} else if(heldFor > 0.125f && Input.GetMouseButton(0)) {
 			fire();
+		}
+
+		if(!Input.GetMouseButton(0)) {
+			heldFor = 0;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Q)) {
@@ -78,6 +89,33 @@ public class PlayerWeapon : MonoBehaviour {
 			proj.GetComponent<Projectile>().owner = GetComponentInParent<Identity>().gameObject;
 			proj.GetComponent<Projectile>().damage = damage;
 		}
+	}
+
+	private void fireShotgun() {
+		if(!canFire) {
+			return;
+		}
+
+		var shotgunProjectileMultiplier = 8;
+		var oldSpread = spread;
+		spread *= 4;
+
+		Camera.main.GetComponent<CameraShake>().shake(2.0f, 0.1f * projectileCount, 1.0f);
+		transform.localPosition += Random.insideUnitSphere * 0.1f;
+		canFire = false;
+		lastFire = Time.time;
+		Invoke("resetCanFire", fireTime);
+
+		for(int i = 0; i < projectileCount * shotgunProjectileMultiplier; i++) {
+			var proj = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation);
+			proj.transform.Rotate(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread));
+			proj.GetComponent<Rigidbody>().AddForce(proj.transform.up * muzzleVelocity * 2);
+			proj.GetComponent<Projectile>().owner = GetComponentInParent<Identity>().gameObject;
+			proj.GetComponent<Projectile>().damage = damage;
+		}
+		
+
+		spread = oldSpread;
 	}
 
 	private void resetCanFire() {
