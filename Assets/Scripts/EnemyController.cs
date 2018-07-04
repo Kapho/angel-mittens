@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour {
 	public enum BrainType {
 		SPAWNER,
 		SWARM,
+		CHASE,
 	}
 
 	public BrainType brain;
@@ -25,14 +26,17 @@ public class EnemyController : MonoBehaviour {
 
 	protected void Update() {
 		var player = GameObject.FindGameObjectWithTag("Player");
+		var playerDir = (player.transform.position - transform.position).normalized;
 
 		switch(brain) {
 			case BrainType.SPAWNER:
 			transform.Translate(-(transform.position - new Vector3(0, transform.position.y, 0).normalized) * 0.00025f);
 			break;
 			case BrainType.SWARM:
-			var playerDir = (player.transform.position - transform.position).normalized;
 			GetComponent<Rigidbody>().AddForce(playerDir * 10f, ForceMode.Acceleration);
+			break;
+			case BrainType.CHASE:
+			GetComponent<Rigidbody>().AddForce(new Vector3(playerDir.x, 0, playerDir.z) * 1000f);
 			break;
 			default:
 			Debug.Log("unimplemented brain on " + gameObject.name);

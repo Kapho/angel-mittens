@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4023157522549310}
   - component: {fileID: 212977903768876960}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796280268181198}
   - component: {fileID: 212020320428441650}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626514399451474}
   - component: {fileID: 108047972129941656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 54419221401987244}
   - component: {fileID: 65358253190989048}
   - component: {fileID: 114426708119988192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

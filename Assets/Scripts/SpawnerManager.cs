@@ -12,20 +12,24 @@ public class SpawnerManager : MonoBehaviour {
 	public GameObject centipede2;
 	public GameObject boss;
 
+	public GameObject grunt;
+	public GameObject spewer;
+	public GameObject charger;
+
 	private float time;
 	private Dictionary<float, GameObject> spawnList = new Dictionary<float, GameObject>();
 	private List<bool> doneSpawning = new List<bool>();
 	private int doneSpawningIndex = 0;
 
-	protected void Start() {
-/*
-262	x3 GIGAPEDE
-274	x2 SPIDER I + SPIDER II
-289	x2 SPIDER I + SPIDER II
-304	x3 SQUID III
-330	x3 SQUID II
-350	LEVIATHAN
-*/
+	/*protected void Start() {
+
+		262	x3 GIGAPEDE
+		274	x2 SPIDER I + SPIDER II
+		289	x2 SPIDER I + SPIDER II
+		304	x3 SQUID III
+		330	x3 SQUID II
+		350	LEVIATHAN
+
 		spawnList.Add(3f, tower);
 
 		spawnList.Add(14f, tower);
@@ -106,10 +110,22 @@ public class SpawnerManager : MonoBehaviour {
 		for(int i = 0; i < spawnList.Count; i++) {
 			doneSpawning.Add(false);
 		}
+	}*/
+
+	protected void Start() {
+		spawnList.Add(3f, grunt);
+		spawnList.Add(14f, grunt);
+		spawnList.Add(20f, grunt);
+		spawnList.Add(24f, tower);
+
+		for(int i = 0; i < spawnList.Count; i++) {
+			doneSpawning.Add(false);
+		}
 	}
 
 	protected void FixedUpdate() {
 		time = Mathf.Floor(GameObject.Find("UI/Text").GetComponent<Timer>().get());
+
 
 		GameObject toSpawn;
 		if(spawnList.TryGetValue(time, out toSpawn) && doneSpawningIndex >= 0 && doneSpawningIndex < doneSpawning.Count && !doneSpawning[doneSpawningIndex]) {
@@ -117,6 +133,7 @@ public class SpawnerManager : MonoBehaviour {
 			Invoke("incrementSpawnIndex", 1.0f);
 			var trans = transform.GetChild(Random.Range(0, transform.childCount));
 			Instantiate(toSpawn, trans.position, trans.rotation);
+			Debug.Log("fug u");
 		}
 	}
 

@@ -20,8 +20,8 @@ public class Identity : MonoBehaviour {
 	public void takeDamage(int damage, GameObject attacker) {
 		health = Mathf.Clamp(health-damage, 0, healthMax);
 		sprite.color = Color.red;
-		Instantiate(blooddrop, transform.position, transform.rotation);
-		blooddrop.GetComponent<Rigidbody>().AddForce(Random.insideUnitSphere * 900f);
+		var bd = Instantiate(blooddrop, transform.position, transform.rotation);
+		bd.GetComponent<Rigidbody>().AddForce(Random.insideUnitSphere * 450f);
 		Invoke("resetColor", 0.1f);
 		if(health == 0) {
 			if(gameObject.tag == "Player") {
