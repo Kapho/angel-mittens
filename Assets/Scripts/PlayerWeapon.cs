@@ -13,14 +13,13 @@ public class PlayerWeapon : MonoBehaviour {
 	private float spread = 1.5f;
 	private float lastFire;
 	private bool lerpingUp = true;
-	private Color lerpColor;
 	private Vector3 initialPosition;
+	private Color handColor = new Color(63, 0, 0, 255);
 
 	protected void Start() {
 		muzzlePoint = transform.Find("muzzlePoint");
 		initialPosition = transform.localPosition;
 		InvokeRepeating("switchLerpDirection", 0, 0.25f);
-		InvokeRepeating("newLerpColor", 0, 4.0f);
 	}
 
 	protected void Update() {
@@ -50,13 +49,14 @@ public class PlayerWeapon : MonoBehaviour {
 		}
 
 		var sprite = transform.Find("sprite").GetComponent<SpriteRenderer>();
-		sprite.color = Color.Lerp(sprite.color, lerpColor, 0.25f);
+		sprite.color = Color.Lerp(sprite.color, handColor, 0.1f);
 	}
 
 	public void levelUp() {
 		Debug.Log("DING DING DING!");
 		projectileCount++;
 		Time.timeScale = 0.75f / projectileCount;
+		handColor = new Color(63 * projectileCount, 0, 0, 255);
 		Invoke("resetTimeScale", 0.25f);
 	}
 
@@ -90,10 +90,6 @@ public class PlayerWeapon : MonoBehaviour {
 
 	public float getLastFire() {
 		return lastFire;
-	}
-	
-	private void newLerpColor() {
-		lerpColor = new Color(Random.Range(31, 255), 0, 0, 255);
 	}
 
 	private void resetTimeScale() {

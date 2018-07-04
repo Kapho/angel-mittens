@@ -202,7 +202,7 @@ Transform:
   m_Children:
   - {fileID: 4684931560540052}
   m_Father: {fileID: 4678761731894230}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4177879919149730
 Transform:
@@ -215,7 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4678761731894230}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4570254064227786
 Transform:
@@ -253,8 +253,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4160592389243846}
   - {fileID: 4177879919149730}
+  - {fileID: 4160592389243846}
   - {fileID: 4986717049315254}
   - {fileID: 4664592411357934}
   m_Father: {fileID: 0}
@@ -531,8 +531,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6577cbc2d7d7c9f4a8f41c21e5911621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gem: {fileID: 0}
+  blooddrop: {fileID: 1903318789054424, guid: a7c108a9a2156734ea2657982ecbf02f, type: 2}
   health: 1
   healthMax: 1
+  dropGem: 0
 --- !u!124 &124337401813625822
 Behaviour:
   m_ObjectHideFlags: 1
@@ -607,7 +610,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 09cb8a08fda976547851bc7dafeeed9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -615,7 +618,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!212 &212847661491896392
 SpriteRenderer:

@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
 	public int damage;
 	[HideInInspector]
 	public GameObject owner;
-	private float lifetime = 30f;
+	private float lifetime = 10f;
 
 	protected void Start() {
 		Destroy(gameObject, lifetime);

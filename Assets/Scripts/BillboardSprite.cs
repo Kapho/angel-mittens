@@ -7,9 +7,9 @@ public class BillboardSprite : MonoBehaviour {
 
 	protected void Update() {
 		var player = GameObject.FindGameObjectWithTag("Player");
-		transform.LookAt(player.transform);
+		transform.LookAt(player.transform, transform.forward);
 		if(upright) {
-			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
+			transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 		}
 	}
 }

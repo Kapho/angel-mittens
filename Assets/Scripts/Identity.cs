@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Identity : MonoBehaviour {
 	public GameObject gem;
+	public GameObject blooddrop;
 	public int health = 5;
 	public int healthMax = 5;
 	public bool dropGem = false;
@@ -19,6 +20,8 @@ public class Identity : MonoBehaviour {
 	public void takeDamage(int damage, GameObject attacker) {
 		health = Mathf.Clamp(health-damage, 0, healthMax);
 		sprite.color = Color.red;
+		Instantiate(blooddrop, transform.position, transform.rotation);
+		blooddrop.GetComponent<Rigidbody>().AddForce(Random.insideUnitSphere * 900f);
 		Invoke("resetColor", 0.1f);
 		if(health == 0) {
 			if(gameObject.tag == "Player") {

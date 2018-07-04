@@ -9,10 +9,11 @@ public class Gem : MonoBehaviour {
 		transform.Rotate(0, rotationSpeed, 0);
 
 		var player = GameObject.FindGameObjectWithTag("Player");
-
-		if(Time.time - player.GetComponentInChildren<PlayerWeapon>().getLastFire() >= attractionDelay) {
-			var dir = -(transform.position - player.transform.position).normalized;
-			GetComponent<Rigidbody>().AddForce(dir * 100f);
+		if(player) {
+			if(Time.time - player.GetComponentInChildren<PlayerWeapon>().getLastFire() >= attractionDelay) {
+				var dir = -(transform.position - player.transform.position).normalized;
+				GetComponent<Rigidbody>().AddForce(dir * 100f);
+			}
 		}
 	}
 }
