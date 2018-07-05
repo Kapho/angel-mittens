@@ -114,9 +114,13 @@ public class SpawnerManager : MonoBehaviour {
 
 	protected void Start() {
 		spawnList.Add(3f, grunt);
+		spawnList.Add(10f, grunt);
 		spawnList.Add(14f, grunt);
-		spawnList.Add(20f, grunt);
 		spawnList.Add(24f, tower);
+		spawnList.Add(36f, tower);
+		spawnList.Add(36.1f, tower);
+		spawnList.Add(48f, spewer);
+		spawnList.Add(48.1f, grunt);
 
 		for(int i = 0; i < spawnList.Count; i++) {
 			doneSpawning.Add(false);
@@ -133,7 +137,6 @@ public class SpawnerManager : MonoBehaviour {
 			Invoke("incrementSpawnIndex", 1.0f);
 			var trans = transform.GetChild(Random.Range(0, transform.childCount));
 			Instantiate(toSpawn, trans.position, trans.rotation);
-			Debug.Log("fug u");
 		}
 	}
 
