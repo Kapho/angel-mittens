@@ -10,8 +10,10 @@ public class GemCollector : MonoBehaviour {
 			gems++;
 			Destroy(col.gameObject);
 
-			if(gems == 10 || gems == 30 || gems == 100) {
-				GetComponentInParent<PlayerWeapon>().levelUp();
+			if(GetComponentInParent<PlayerWeapon>()) {
+				if(gems == 10 || gems == 30 || gems == 100) {
+					GetComponentInParent<PlayerWeapon>().levelUp();
+				}
 			}
 		}
 	}

@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour {
 		SWARM,
 		CHASE,
 		SPEW,
+		SUCK,
 	}
 
 	public BrainType brain;
@@ -47,6 +48,14 @@ public class EnemyController : MonoBehaviour {
 
 			case BrainType.SPEW:
 			GetComponent<Rigidbody>().AddForce(new Vector3(playerDir.x, 0, playerDir.z) * 500f);
+			break;
+
+			case BrainType.SUCK:
+			var gems = GameObject.FindGameObjectsWithTag("Gem");
+			for(int i = 0; i < gems.Length; i++) {
+				var dir = -(gems[i].transform.position - transform.position).normalized;
+				gems[i].GetComponent<Rigidbody>().AddForce(dir * 150f);
+			}
 			break;
 
 			default:

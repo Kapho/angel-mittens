@@ -28,6 +28,7 @@ public class Identity : MonoBehaviour {
 				Time.timeScale = 0.1f;
 				gameObject.GetComponentInChildren<PlayerWeapon>().gameObject.SetActive(false);
 				gameObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>().enabled = false;
+				gameObject.GetComponents<AudioSource>()[1].Play();
 				Invoke("gotoGameover", 0.2f);
 			} else {
 				if(dropGem) {
