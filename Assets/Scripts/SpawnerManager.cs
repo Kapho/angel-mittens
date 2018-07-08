@@ -119,8 +119,9 @@ public class SpawnerManager : MonoBehaviour {
 		spawnList.Add(24f, tower);
 		spawnList.Add(36f, tower);
 		spawnList.Add(36.1f, tower);
-		spawnList.Add(48f, spewer);
+		spawnList.Add(48f, spider);
 		spawnList.Add(48.1f, grunt);
+		spawnList.Add(48.2f, grunt);
 
 		for(int i = 0; i < spawnList.Count; i++) {
 			doneSpawning.Add(false);
